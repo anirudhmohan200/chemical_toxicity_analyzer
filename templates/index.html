@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Toxicity Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Chemical Toxicity Analyzer</h1>
+            <p>Predict chemical toxicity using Random Forest AI</p>
+        </header>
+
+        <main>
+            <form id="analysis-form">
+                <div class="input-group">
+                    <label for="molwt">Molecular Weight</label>
+                    <input type="number" step="any" id="molwt" name="molwt" placeholder="e.g. 150.2" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="logp">LogP (Partition Coefficient)</label>
+                    <input type="number" step="any" id="logp" name="logp" placeholder="e.g. 2.5" required>
+                </div>
+
+                <button type="submit" id="analyze-btn">Analyze Toxicity</button>
+            </form>
+
+            <div id="result-area" class="hidden">
+                <div class="result-card">
+                    <h3>Analysis Result</h3>
+                    <div class="result-item">
+                        <!-- For classification, "Predicted LC50" is less relevant, usually just Status is enough, 
+                              but we can show the raw class (0 or 1) if desired. Keeping it simple. -->
+                        <span class="label">Prediction Class:</span>
+                        <span class="value" id="lc50-value">--</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Classification:</span>
+                        <span class="value highlight" id="status-value">--</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
